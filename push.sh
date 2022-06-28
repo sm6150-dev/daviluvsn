@@ -1,15 +1,6 @@
 #!/bin/bash
-
-while getopts ":-:" o; do
-    case "${OPTARG}" in
-        reboot)
-            REBOOT=1
-            ;;
-        use_remount)
-            USE_REMOUNT=1
-            ;;
-    esac
-done
+REBOOT=1
+USE_REMOUNT=1
 
 adb wait-for-device root
 adb wait-for-device shell "mount | grep -q ^tmpfs\ on\ /system && umount -fl /system/{bin,etc} 2>/dev/null"
